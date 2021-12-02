@@ -1,0 +1,10 @@
+body {
+    margin: 0;
+    background-image: url('./../img/bg.jpeg');
+    background-size: cover;
+}
+
+.my-de-form-cont {
+    max-width: 576px;
+    margin: 0 auto;
+}
