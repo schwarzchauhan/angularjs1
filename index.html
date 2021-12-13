@@ -18,49 +18,58 @@
 <body ng-app="MyApp">
 
     <div class="container p-4 bg-light text-dark" ng-controller='TypischDeutschController'>
-        <div class="my-de-card">
-            {{user.name}}
-            <div class="card text-center">
-                <!-- https://getbootstrap.com/docs/5.0/layout/gutters/#no-gutters -->
-                <div class="row g-0">
-                    <div class="col-md-4 text-center">
-                        <img src="{{user.image}}" class="img-thumbnail" alt="profile image not available">
+        <input type="search" ng-model="q" placeholder="filter leute..." aria-label="filter friends" />
+        <div ng-repeat='user in users | filter:q as results track by user.email'>
+            <!-- https://docs.angularjs.org/api/ng/directive/ngRepeat -->
+            <div class="my-de-profile" ng-if="user">
+                <div class="my-de-card">
+                    
+                    <div class="card text-center">
+                        <!-- https://getbootstrap.com/docs/5.0/layout/gutters/#no-gutters -->
+                        <div class="row g-0">
+                            <div class="col-md-4 text-center">
+                                <img ng-src="{{user.image}}" class="img-thumbnail" alt="profile image not available">
+                            </div>
+                            <div class="col-md-8 text-md-start">
+                                <div class="card-body">
+                                    <h5 class="card-title"> {{user.firstname}} {{user.lastname}}</h5>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-md-8 text-md-start">
-                        <div class="card-body">
-                            <h5 class="card-title">{{user.firstname}} {{user.lastname}}</h5>
+                </div>
+                <div class="my-de-profile-info text-center">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <h4>Adresse</h4>
+                            <div>{{user.location.street.number}} {{user.location.street.name}}</div>
+                            <div>{{user.location.city}} {{user.location.zip}}</div>
+                        </div>
+                        <div class="col-md-4">
+                            <h4>Kontakt</h4>
+                            <div><i class="fa fa-envelope"></i><span> {{user.email}}</span></div>
+                        </div>
+                        <div class="col-md-4">
+                            <h4>Telefon</h4>
+                            <div><i class="fa fa-mobile"></i><span> {{user.phone.mobile}}</span></div>
+                            <div><i class="fa fa-phone"></i><span> {{user.phone.land}}</span></div>
                         </div>
                     </div>
                 </div>
             </div>
+    
+            <hr>
         </div>
-        <div class="my-de-profile-info text-center">
-            <div class="row g-0">
-                <div class="col-md-4">
-                    <h4>Address</h4>
-                    <div>{{user.location.street.number}} {{user.location.street.name}}</div>
-                    <div>{{user.location.city}} {{user.location.zip}}</div>
-                </div>
-                <div class="col-md-4">
-                    <h4>Personal Info</h4>
-                    <div><i class="fa fa-envelope"></i><span> {{user.email}}</span></div>
-                </div>
-                <div class="col-md-4">
-                    <h4>Telfon</h4>
-                    <div><i class="fa fa-mobile"></i><span> {{user.phone.mobile}}</span></div>
-                    <div><i class="fa fa-phone"></i><span> {{user.phone.land}}</span></div>
-                </div>
-            </div>
-        </div>
+
         <div class="my-de-form-cont">
             <h1>Netzverb Library
                 <a href="https://www.verbformen.com/" class="text-decoration-none" target="blank">#</a>
             </h1>
-            <form class="deWordsform" ng-submit='searchDeWord()'>
+            <form class="deWordsform" ng-submit="searchDeWord()">
                 <div class="form-group">
                     <!-- <label for="deWord"></label> -->
-                    <input type="text" class="form-control" name="deWord" id="deWord" placeholder="Enter the word...">
-                    <small class="form-text text-muted">we use netzverb education platform</small>
+                    <input type="text" class="form-control" placeholder="Enter the word..." ng-model="deWord">
+                    <small class="form-text text-muted">we use netzverb education platform {{deWord}}</small>
                 </div>
                 <button type="submit" class="btn btn-primary">Find</button>
             </form>
