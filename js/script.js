@@ -4,6 +4,7 @@ let app = angular.module('MyApp', []);
 app.controller('TypischDeutschController', ($scope, $http) => {
     $scope.users = undefined;
     $scope.q = undefined;
+    $scope.pages = ['404', 'index'];
 
     // https://docs.angularjs.org/api/ng/service/$http
     // Simple GET request example:

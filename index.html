@@ -74,7 +74,17 @@
                 <button type="submit" class="btn btn-primary">Find</button>
             </form>
         </div>
+
+        <ul>
+            <div ng-repeat="page in pages">
+                <li>
+                    <a href="/{{page}}.html">/{{page}}.html</a>    
+                </li>
+            </div>
+        </ul>
     </div>
+
+
 
     <!-- AngularJS -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
