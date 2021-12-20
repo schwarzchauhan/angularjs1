@@ -32,7 +32,7 @@
                             </div>
                             <div class="col-md-8 text-md-start">
                                 <div class="card-body">
-                                    <h5 class="card-title"> {{user.firstname}} {{user.lastname}}</h5>
+                                    <h5 class="card-title"> {{user.firstname | uppercase}} {{user.lastname | uppercase}}</h5>
                                 </div>
                             </div>
                         </div>
@@ -47,7 +47,7 @@
                         </div>
                         <div class="col-md-4">
                             <h4>Kontakt</h4>
-                            <div><i class="fa fa-envelope"></i><span> {{user.email}}</span></div>
+                            <div><i class="fa fa-envelope"></i><span> {{user.email | lowercase}}</span></div>
                         </div>
                         <div class="col-md-4">
                             <h4>Telefon</h4>
